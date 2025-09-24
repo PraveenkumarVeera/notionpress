@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/PraveenkumarVeera/notionpress/static/css/main.e6c13ad2.css",
-    "main.js": "/PraveenkumarVeera/notionpress/static/js/main.244d2b35.js",
-    "static/js/453.25b4bf3c.chunk.js": "/PraveenkumarVeera/notionpress/static/js/453.25b4bf3c.chunk.js",
-    "index.html": "/PraveenkumarVeera/notionpress/index.html",
-    "main.e6c13ad2.css.map": "/PraveenkumarVeera/notionpress/static/css/main.e6c13ad2.css.map",
-    "main.244d2b35.js.map": "/PraveenkumarVeera/notionpress/static/js/main.244d2b35.js.map",
-    "453.25b4bf3c.chunk.js.map": "/PraveenkumarVeera/notionpress/static/js/453.25b4bf3c.chunk.js.map"
+    "main.css": "/notionpress/static/css/main.e6c13ad2.css",
+    "main.js": "/notionpress/static/js/main.d4369769.js",
+    "static/js/453.25b4bf3c.chunk.js": "/notionpress/static/js/453.25b4bf3c.chunk.js",
+    "index.html": "/notionpress/index.html",
+    "main.e6c13ad2.css.map": "/notionpress/static/css/main.e6c13ad2.css.map",
+    "main.d4369769.js.map": "/notionpress/static/js/main.d4369769.js.map",
+    "453.25b4bf3c.chunk.js.map": "/notionpress/static/js/453.25b4bf3c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.244d2b35.js"
+    "static/js/main.d4369769.js"
   ]
 }
