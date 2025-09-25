@@ -13,7 +13,6 @@ import {
   DialogContent,
   DialogActions,
   TextField,
-  Alert,
 } from "@mui/material";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -180,29 +179,31 @@ export default function CsvTableUploader() {
     setHasChanges(false);
   };
 
-  const handleReset = () => { 
+  const handleReset = () => {
     alert("All changes will be lost. Are you sure?");
     setRows(originalRows);
     setEditedRows(new Set());
     setHasChanges(false);
-  }
+  };
 
   return (
-    <Box sx={{ p: 2 }}>
+    <Box sx={{ p: { xs: 1, sm: 2 } }}>
       <Paper
         sx={{
-          p: 2,
+          p: { xs: 1, sm: 2 },
           mb: 2,
-          direction: "row",
           display: "flex",
+          flexDirection: { xs: "column", md: "row" },
           justifyContent: "space-between",
-          alignItems: "center",
+          alignItems: { xs: "stretch", md: "center" },
+          gap: 2,
         }}
       >
         <Stack
           direction={{ xs: "column", sm: "row" }}
           spacing={2}
-          alignItems="center"
+          alignItems={{ xs: "stretch", sm: "center" }}
+          flexWrap="wrap"
         >
           <label htmlFor="csvInput">
             <input
@@ -216,17 +217,18 @@ export default function CsvTableUploader() {
               variant="contained"
               component="span"
               startIcon={<UploadFileIcon />}
+              fullWidth={true}
             >
               Upload CSV File
             </Button>
           </label>
 
-          <Typography variant="body2">
+          <Typography variant="body2" sx={{ wordBreak: "break-word" }}>
             {fileName || "No file selected"}
           </Typography>
 
           {parsing && (
-            <Box sx={{ width: "100%" }}>
+            <Box sx={{ width: 200,mt: { xs: 1, sm: 0 } }}>
               <LinearProgress variant="determinate" value={parsingProgress} />
               <Typography variant="caption">
                 Parsing... {Math.round(parsingProgress)}%
@@ -244,29 +246,30 @@ export default function CsvTableUploader() {
         </Stack>
 
         {hasChanges && (
-          <Stack direction="row" spacing={2}>
-             <Button
-            variant="outlined"
-            color="success"
-            startIcon={<DownloadIcon />}
-            onClick={handleDownload}
-          >
-            Download Edited CSV
-          </Button>
-          <Button
-            variant="outlined"
-            color="warning"
-            onClick={handleReset}
-            sx={{ ml: 2 }}
-          >
-            Reset Changes
-          </Button>
-          </Stack>    
+          <Stack direction={{ xs: "column", sm: "row" }} spacing={2} alignItems="center" sx={{ mt: { xs: 2, md: 0 } }}>
+            <Button
+              variant="outlined"
+              color="success"
+              startIcon={<DownloadIcon />}
+              onClick={handleDownload}
+              fullWidth={true}
+            >
+              Download Edited CSV
+            </Button>
+            <Button
+              variant="outlined"
+              color="warning"
+              onClick={handleReset}
+              fullWidth={true}
+            >
+              Reset All Edits
+            </Button>
+          </Stack>
         )}
       </Paper>
 
       {rows.length > 0 && (
-        <Paper sx={{ height: 600, width: "100%" }}>
+        <Paper sx={{ height: { xs: 400, md: 600 }, width: "100%",overflow: "auto", }}>
           <DataGrid
             rows={rows}
             columns={gridColumns}
@@ -276,6 +279,15 @@ export default function CsvTableUploader() {
             getRowClassName={(params) =>
               editedRows.has(params.id) ? "edited-row" : ""
             }
+            sx={{
+              "& .MuiDataGrid-columnHeaders": {
+                borderBottom: "1px solid #ccc",
+              },
+              "& .MuiDataGrid-columnHeaderTitle": {
+                fontWeight: "bold",
+                fontSize: { xs: 13, sm: 15 },
+              },
+            }}
           />
         </Paper>
       )}
@@ -285,6 +297,7 @@ export default function CsvTableUploader() {
         onClose={handleDialogClose}
         maxWidth="md"
         fullWidth
+        fullScreen={{ xs: true, sm: false }}
       >
         <DialogTitle>
           {dialogMode === "view" ? "Book Detail" : "Edit Book"}
@@ -335,7 +348,12 @@ export default function CsvTableUploader() {
         </DialogContent>
         <DialogActions>
           {dialogMode === "edit" && (
-            <Button onClick={handleSave} variant="contained" color="primary" disabled={!isDirty} >
+            <Button
+              onClick={handleSave}
+              variant="contained"
+              color="primary"
+              disabled={!isDirty}
+            >
               Save
             </Button>
           )}
