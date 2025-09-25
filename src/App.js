@@ -228,7 +228,7 @@ export default function CsvTableUploader() {
           </Typography>
 
           {parsing && (
-            <Box sx={{ width: 200,mt: { xs: 1, sm: 0 } }}>
+            <Box sx={{ width: 200,mt: { xs: 1, sm: 1,md:1 } }}>
               <LinearProgress variant="determinate" value={parsingProgress} />
               <Typography variant="caption">
                 Parsing... {Math.round(parsingProgress)}%
